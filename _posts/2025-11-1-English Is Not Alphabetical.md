@@ -1,7 +1,7 @@
 ---
 
 title: English Is Not Alphabetical
-date: 2025-10-19 -0500
+date: 2025-11-1 -0500
 categories: [Project, Optimization]
 tags: [optimization, gradient descent, genetic algorithm, project]
 description: Testing if most words in English are in alphabetical order, then using gradient descent and a genetic algorithm to find different orders of alphabets that result in more orderly English words.
