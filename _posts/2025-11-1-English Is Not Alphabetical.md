@@ -96,7 +96,7 @@ $$
 </details>
 
 
-Notice that the elements of $$\mathbf{S}$$ are negative below the diagonal. This is not a coincidence! The only negative elements in any row are going to be in columns corresponding to the letters that precede it. Since the letters are mirrored on the top and bottom, every element before the element along the diagonal will correspond to a 2-gram with a negative score, so those are the negative elements. Note that this is true for every ordering! So this gives a compact way to calculate the score of an ordering: permute the rows and columns of the 2-gram matrix $$\mathbf{S}$$ to generate the new ordering, then take the Frobenius product with some sign matrix Sign, where the elements along the diagonal are 0, above the diagonal are 1, and below the diagonal are -1. This is much better than checking almost 3 million 2-grams individually!
+Notice that the elements of $$\mathbf{S}$$ are negative below the diagonal. This is not a coincidence! The only negative elements in any row are going to be in columns corresponding to the letters that precede it. Since the letters are mirrored on the top and bottom, every element before the element along the diagonal will correspond to a 2-gram with a negative score, so those are the negative elements. Note that this is true for every ordering! So this gives a compact way to calculate the score of an ordering: permute the rows and columns of the 2-gram matrix $$\mathbf{M}$$ to generate the new ordering, then take the Frobenius product with some sign matrix Sign, where the elements along the diagonal are 0, above the diagonal are 1, and below the diagonal are -1. This is much better than checking almost 3 million 2-grams individually!
 
 ## Finding a Better Order
 
@@ -104,7 +104,7 @@ Now to actually find a better order. It's obviously unfeasible to check all $$26
 
 ### Gradient Descent
 
-At first, I wanted to use gradient descent, which might sound like a weird choice, since this is a decidedly continuous problem. And you would be right. But I wanted to figure out a way to pose this problem in a continuous way and see how well a continuous optimization method would work. 
+At first, I wanted to use gradient descent, which might sound like a weird choice, since this is a decidedly discrete problem. And you would be right. But I wanted to figure out a way to pose this problem in a continuous way and see how well a continuous optimization method would work. 
 
 To make the problem continuous, I used permutation matrices. With a permutation matrix $$\mathbf{P}$$, taking $$\mathbf{PSP}^T = \mathbf{S}'$$ results in a matrix $$S'$$ with the rows and columns permuted in the same way, so if A and B are swapped in the ordering, it will result in swapping the first and second rows and columns. The final score for the ordering would be
 
